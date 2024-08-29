@@ -1,6 +1,5 @@
 import esbuild from "rollup-plugin-esbuild";
 import { dts } from "rollup-plugin-dts";
-import { SourceMap } from "module";
 
 /**
  * @type {import('rollup').RollupOptions}
@@ -24,7 +23,6 @@ const config = [
     output: {
       dir: "dist",
       preserveModules: true,
-      // file: "dist/index.js",
     },
     external: ["vue"],
     plugins: [

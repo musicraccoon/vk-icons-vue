@@ -1,12 +1,12 @@
 import fs from "node:fs";
 import { parseSync, stringify } from "svgson";
-import { optimizeSvg } from "./utils.js";
+import { optimizeSvg, recursiveParseSvg } from "./utils.js";
 
 export default function template({ name, componentName, size, path }) {
   const svg = parseSync(optimizeSvg(fs.readFileSync(path, "utf-8"), name));
   svg.attributes.style = "background-color: #fff; border-radius: 2px";
 
-  const content = svg.children.map((el) => stringify(el)).join("");
+  const content = recursiveParseSvg(svg);
   const width = svg.attributes.width || size;
   const height = svg.attributes.height || size;
 
@@ -26,7 +26,7 @@ import createIcon from '../createIcon';
  */
 const ${componentName} = createIcon({
   name: "${name}",
-  content: \`${content}\`,
+  content: ${JSON.stringify(content)},
   width: ${width},
   height: ${height},
   viewBox: "${viewBox}"

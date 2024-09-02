@@ -34,3 +34,15 @@ export function optimizeSvg(svg, prefix) {
     ],
   }).data;
 }
+
+export function recursiveParseSvg(svg) {
+  function parse(children) {
+    return children.map((el) => ({
+      name: el.name,
+      attributes: el.attributes,
+      children: parse(el.children),
+    }));
+  }
+
+  return parse(svg.children);
+}

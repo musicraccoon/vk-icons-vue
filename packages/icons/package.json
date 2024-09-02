@@ -6,7 +6,7 @@
   "typings": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "pnpm clean && pnpm build:generate && build:bundle",
+    "build": "pnpm clean && pnpm build:generate && pnpm build:bundle",
     "build:generate": "node scripts/generator.js",
     "build:bundle": "rollup -c rollup.config.js",
     "clean": "rm -rf dist && rm src/icons/*.ts"
